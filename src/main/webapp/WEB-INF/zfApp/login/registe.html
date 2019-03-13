@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>注册</title>
+	<!--<meta http-equiv="Access-Control-Allow-Origin" content="">
+	<meta http-equiv="content-security-policy">-->
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/mui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+</head>
+<body>
+	  <!-- 主页面容器 -->
+	  <div class="mui-inner-wrap" >
+	    <div class="mui-content mui-scroll-wrapper" id="loginBg">
+	      <div class="mui-scroll" style="height: 100%;" >
+	        <!-- 主界面具体展示内容 -->
+	         <div class="loginTitle">Welcome</div>
+	         <form id="form" class="mui-input-group" method="post" onsubmit="return doCheck()">
+			    <div class="mui-input-row">
+			        <label>身份证号</label>
+			        <input type="text" name="sfzh" class="mui-input-clear " >
+			    </div>
+			    <div class="mui-input-row">
+			        <label>密码</label>
+			        <input type="password" id="userpwd"  name="userpwd" class="mui-input-password" >
+			    </div>
+			    <div class="mui-input-row">
+			        <label>确认密码</label>
+			        <input type="password" class="mui-input-password" >
+			    </div>
+				 <div class="mui-input-row">
+					 <label>用户姓名</label>
+					 <input type="text" name="username" class="mui-input-clear" >
+				 </div>
+				 <div class="mui-input-row">
+					 <div class=" mui-radio mui-pull-left mui-left">
+						 <label>男</label>
+						 <input name="sex" type="radio" value="男">
+					 </div>
+					 <div class="mui-radio mui-pull-left mui-left">
+						 <label>女</label>
+						 <input name="sex" type="radio" value="女">
+					 </div>
+				 </div>
+			    <div class="mui-input-row">
+			        <label>手机号</label>
+			        <input type="text" name="linktel"  id="linktel" class="mui-input-clear">
+			    </div>
+			    <div class="mui-input-row mui-left">
+			        <label style="float: right" class="code">短信验证码</label>
+			        <input type="text" name="checkcode" id="checkcode" class="mui-input-clear" placeholder="请输入验证码" style="width: 50%">
+			    </div>
+			    <div class="mui-content-padded">
+				    <button id='login' class="mui-btn mui-btn-block mui-btn-primary">立即注册</button>
+			    </div>
+			</form>
+		   
+	      </div>
+	    </div>  
+	  </div>
+    <script src="../../js/public/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/mui/mui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/public/public.js" type="text/javascript" charset="utf-8"></script>
+	  <script src="../../js/easyui/jquery.easyui.min.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		mui.init();
+        var flag=true;
+        var timer=null;
+        mui(".mui-input-row").on('tap', '.code', function() {
+            sendCode();
+        });
+        mui(".mui-content-padded").on('tap', '#login', function() {
+            save();
+        });
+        function save(){
+           weixin.ajaxForm('#form',weixin.basePath+'applyUserinfo/insertUserInfo', {}, function(data){
+                weixin.toast(data);
+                if(data=="注册成功"){
+
+                }else{
+                    flag=true;
+                    $("#checkcode").val('');
+                }
+                clearSession();//清空缓存
+            });
+        }
+        //设置倒计时
+        function setCode(){
+            clearInterval(timer);
+            var time=60;
+            timer=setInterval(function(){
+                if(time==0){
+                    $(".code").html('获取验证码');
+                    flag=true;
+                    clearInterval(timer);//这句话至关重要
+                    return false;
+                }else {
+                    flag=false;
+                    time--;
+                    $(".code").html('倒计时'+time+'秒');
+                }
+            },1000);
+        }
+        //发送验证码
+        function sendCode(){
+            if(flag){
+                flag=false;
+                var linktel=$.trim($("#linktel").val());
+                if(linktel.length==0){
+                    flag=true;
+                    weixin.alert("请输入手机号")
+                }else{
+                    setCode();
+                    $.ajax({
+                        url:weixin.basePath+'applyUserinfo/SendCode',
+                        type:'post',
+                        data:{
+                            linktel:$.trim($("#linktel").val())
+                        },
+                        success:function(data){
+                        },error:function(){
+                              weixin.alert("数据库连接失败，请稍后再试")
+                        }
+                    })
+                }
+            }
+        }
+        //清空后台session
+        function clearSession(){
+            $.ajax({
+                url:weixin.basePath+'applyUserinfo/newSend',
+                type:'post',
+                data:null,
+                success:function (data) {
+                    if(data=="刷新"){
+                        clearInterval(timer);
+                        $(".code").html('获取验证码');
+                    }
+                },
+                error:function () {
+                    weixin.alert("数据库连接失败，稍后再试");
+                }
+            })
+        }
+	</script>
+</body>
+</html>
+

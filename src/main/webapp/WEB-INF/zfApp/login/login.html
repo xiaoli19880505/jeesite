@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>登录</title>
+    <meta http-equiv="Access-Control-Allow-Origin" content="">
+    <meta http-equiv="content-security-policy">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/mui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+</head>
+<body>
+	  <!-- 主页面容器 -->
+	  <div class="mui-inner-wrap" >
+	    <div class="mui-content mui-scroll-wrapper" id="loginBg">
+	      <div class="mui-scroll" style="height: 100%;">
+	        <!-- 主界面具体展示内容 -->
+	         <div class="loginTitle">Welcome</div>
+	         <form id="form" class="mui-input-group" method="post" onsubmit="return doCheck()" action="http://localhost:8080/bzfxm/applyUserinfo/loadMenu">
+			    <div class="mui-input-row">
+			        <label>身份证号</label>
+			        <input type="text" id="sfzh" name="sfzh" class="mui-input-clear" >
+			    </div>
+			    <div class="mui-input-row">
+			        <label>密码</label>
+			        <input type="password" name="userpwd" id="userpwd" class="mui-input-password" >
+			    </div>
+			     <div class="img mui-input-row">
+			    	<img src="http://localhost:8080/bzfxm/getCode" id="imgObj"/>
+					 <label class="changeImg" style="float: right;">换一张</label>
+			    </div>
+			    <div class="mui-input-row">
+			        <label>验证码</label>
+			        <input type="text" name="checkcode" id="checkcode" class="mui-input-clear" >
+			    </div>
+			   
+			    <div class="mui-content-padded">
+				    <button id='login' class="mui-btn mui-btn-block mui-btn-primary btn">立即登录</button>
+				    <div class="link-area" >
+				    	   <a id='forgetPwd' class="btn">忘记密码?</a>
+				    	   <span class="spliter">|</span> 
+				    	   <a id='reg' href=""  class="btn">注册账号</a>
+				    </div>
+			    </div>
+			</form>
+		   
+	      </div>
+	    </div>  
+	  </div>
+    <script src="../../js/public/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+	  <script src="../../js/easyui/jquery.easyui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/mui/mui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/public/public.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+				mui.init();
+                mui(".mui-content-padded").on('tap', '.btn', function(e) {
+                    var target = this.getAttribute("id");
+                    switch(target) {
+                        case 'forgetPwd':
+                            weixin.openWindow('forgetPwd','forgetPwd.html');
+                            break;
+                        case 'reg':
+                            weixin.openWindow('registe','registe.html');
+                            break;
+                        case 'login':
+                            $("#form").submit();
+                            break;
+                        case 'updatePwd':
+                            weixin.openWindow('updatePwd','../../updatePwd.html');
+                            break;
+                        default:
+                            break;
+                    }
+                });
+				/*mui(".mui-content-padded").on('tap','#login',function(){
+						// 获取id
+						  //var id = this.getAttribute("id");
+						  //传值给详情页面，通知加载新数据
+						  //mui.fire(detail,'getDetail',{id:id});
+						  //打开新闻详情
+				});*/
+				//更换图片
+				mui(".img").on('tap','.changeImg',function(){
+			        var src =$("#imgObj").attr("src");
+			        $("#imgObj").attr("src", chgUrl(src));
+			    });
+				  function chgUrl(url) {
+				        var timestamp = (new Date()).valueOf();
+				        var index=url.indexOf("getCode");
+				        url = url.substring(0, (index+7));
+				        if ((url.indexOf("&") >= 0)) {
+				             url = url + "×tamp=" + timestamp;
+						} else {
+				        	url = url + "?timestamp=" + timestamp;
+						}
+				            return url;
+					}
+                  function doCheck(){
+                    var sfzh=$.trim($("#sfzh").val());
+                    var password=$.trim($("#password").val());
+                    var checkcode=$.trim($("#checkcode").val());
+                    if((sfzh.length>0)&&(password.length>0)&&(checkcode.length>0)){
+                        return true
+                    }else{
+                        weixin.alert("输入项出错！");
+                        return false;
+                    }
+                }
+	</script>
+</body>
+</html>
+

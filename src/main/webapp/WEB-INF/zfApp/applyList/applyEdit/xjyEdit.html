@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>我的申请</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../../../css/mui.css"/>
+</head>
+<body>
+	<!-- 主界面不动、菜单移动 -->
+	<!-- 侧滑导航根容器 -->
+	<div class="mui-off-canvas-wrap mui-draggable mui-slide-in">
+	  <!-- 菜单容器 -->
+	  <aside class="mui-off-canvas-left" id="offCanvasSide">
+	    <div class="mui-scroll-wrapper">
+	      <div class="mui-scroll">
+	        <!-- 菜单具体展示内容 -->
+	        <ul class="mui-table-view">
+			    <li class="mui-table-view-cell">
+			        <a class="mui-navigate-right">我的申请</a>
+			    </li>
+			    <li class="mui-table-view-cell">
+			        <a class="mui-navigate-right">我的年审</a>
+			    </li>
+			    <li class="mui-table-view-cell">
+			        <a class="mui-navigate-right">个人信息</a>
+			    </li>
+			    <li class="mui-table-view-cell">
+			        <a class="mui-navigate-right">修改密码</a>
+			    </li>
+			</ul>
+	      </div>
+	    </div>
+	  </aside>
+	  <!-- 主页面容器 -->
+	  <div class="mui-inner-wrap">
+	    <!-- 主页面标题 -->
+	    <header class="mui-bar mui-bar-nav">
+	      <a class="mui-icon mui-action-menu mui-icon-bars mui-pull-left" href="#offCanvasSide"></a>
+	      <h1 class="mui-title">新就业公租房申请</h1>
+	    </header>
+	    <nav class="mui-bar mui-bar-tab">
+		    <a class="mui-tab-item mui-active"id="apply">
+		        <span class="mui-icon mui-icon-home"></span>
+		        <span class="mui-tab-label">我的申请</span>
+		    </a>
+		    <a class="mui-tab-item"  id="audit">
+		        <span class="mui-icon mui-icon-phone"></span>
+		        <span class="mui-tab-label">我的年审</span>
+		    </a>
+		    <a class="mui-tab-item"  id="userInfo">
+		        <span class="mui-icon mui-icon-contact"></span>
+		        <span class="mui-tab-label">个人信息</span>
+		    </a>
+		    <a class="mui-tab-item"  id="updatePwd">
+		        <span class="mui-icon mui-icon-gear"></span>
+		        <span class="mui-tab-label">修改密码</span>
+		    </a>
+		</nav>
+	    <div class="mui-content mui-scroll-wrapper">
+	      <div class="mui-scroll">
+	        <!-- 主界面具体展示内容 -->
+	          <div id="wrap0">
+		          <div class="mui-card">
+					<!--页眉，放置标题-->
+					<div class="mui-card-header">在线申请用户须知</div>
+					<!--内容区-->
+					<div class="mui-card-content" >
+						<div class="mui-row" style="padding:5px">1.在线申请采用实名制，同一手机号码只能在本平台办理一套经济适用房申请。</div>
+						<div class="mui-row" style="padding:5px">2.申请人须如实填写个人资料并确认填写内容是否正确，如有虚假、瞒报，由申请人自行承担一切法律后果；对提供不实资料（含照片信息）的，将不予受理。</div>
+						<div class="mui-row" style="padding:5px">3.领取通知单时，提供申请人办理业务时所有资料原件</div>
+					</div>
+					<!--页脚，放置补充信息或支持的操作-->
+					<div class="mui-card-footer">
+						<div class="mui-input-row mui-checkbox mui-left">
+		                <label>我已阅读同意</label>
+		                <input name="checkbox1" value="Item 1" type="checkbox">
+		                </div>
+					</div>
+			    </div>
+			      <div class="mui-content-padded" style="margin-top: 2rem;">
+					    <button id='next1' class="mui-btn mui-btn-block mui-btn-primary">继续申请</button>
+				   </div>
+			   </div>
+			  <div id="wrap1" style="display: none;">
+		          <div class="mui-card">
+					<!--页眉，放置标题-->
+					<div class="mui-card-header">基本信息</div>
+					<!--内容区-->
+					<div class="mui-card-content" >
+					<form class="mui-input-group">
+						<div class="mui-input-row">
+					        <label>单位名称</label>
+					        <input type="text" class="mui-input-clear" placeholder="单位名称">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>户籍所在区</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入户籍所在区">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>户籍所在街道</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入街道">
+					    </div>
+					</form>
+					</div>
+			    </div>
+			      <div class="mui-card">
+					<!--页眉，放置标题-->
+					<div class="mui-card-header">申请人信息</div>
+					<!--内容区-->
+					<div class="mui-card-content" >
+					<form class="mui-input-group">
+					    <div class="mui-input-row">
+					        <label>姓名</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入姓名">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>身份证号</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入身份证号">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>性别</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入性别">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>工作单位</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入工作单位">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>联系电话</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入联系电话">
+					    </div>
+					</form>
+					</div>
+			    </div>
+			      <div class="mui-card">
+					<!--页眉，放置标题-->
+					<div class="mui-card-header">配偶信息</div>
+					<!--内容区-->
+					<div class="mui-card-content" >
+					<form class="mui-input-group">
+					    <div class="mui-input-row">
+					        <label>姓名</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入姓名">
+					    </div>
+					     <div class="mui-input-row">
+					        <label>性别</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入性别">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>联系电话</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入联系电话">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>身份证号</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入身份证号">
+					    </div>
+					   
+					    <div class="mui-input-row">
+					        <label>毕业时间</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入毕业时间">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>毕业学校</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入毕业学校">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>学历</label>
+					        <input type="text" class="mui-input-clear" placeholder="学历">
+					    </div>
+					    
+					</form>
+					</div>
+			    </div>
+			      <div class="mui-card">
+					<!--页眉，放置标题-->
+					<div class="mui-card-header">市区户籍信息</div>
+					<!--内容区-->
+					<div class="mui-card-content" >
+					<form class="mui-input-group">
+						<div class="mui-input-row">
+					        <label>户籍地址</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入户籍地址">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>户籍年限</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入户籍年限">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>家庭收入</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入家庭收入">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>个人年收入</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入个人年收入">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>家庭年收入</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入家庭年收入">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>人均月收入</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入人均月收入">
+					    </div>
+					</form>
+					</div>
+			    </div>
+			      <div class="mui-card">
+					<!--页眉，放置标题-->
+					<div class="mui-card-header">工作单位信息</div>
+					<!--内容区-->
+					<div class="mui-card-content" >
+					<form class="mui-input-group">
+					    <div class="mui-input-row">
+					        <label>法定代表人</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入法定代表人">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>营业执照号</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入营业执照号">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>委托代理人</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入委托代理人">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>手机号码</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入手机号码">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>联系地址</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入联系地址">
+					    </div>
+					</form>
+					</div>
+			    </div>
+			      <div class="mui-content-padded" style="margin-top: 2rem;">
+					    <button id='next2' class="mui-btn mui-btn-block mui-btn-primary">下一步</button>
+				   </div>
+			   </div>
+			  <div id="wrap2" style="display: none;">
+			      <div class="mui-card">
+					<!--页眉，放置标题-->
+					<div class="mui-card-header">家庭现住房情况</div>
+					<!--内容区-->
+					<div class="mui-card-content" >
+					<form class="mui-input-group">
+					    <div class="mui-input-row">
+					        <label>房屋坐落</label>
+					        <input type="text" class="mui-input-clear" placeholder="房屋坐落">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>产权单位</label>
+					        <input type="text" class="mui-input-clear" placeholder="产权单位">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>建筑面积</label>
+					        <input type="text" class="mui-input-clear" placeholder="建筑面积">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>人均建筑面积</label>
+					        <input type="text" class="mui-input-clear" placeholder="人均建筑面积">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>现住房性质</label>
+					        <input type="text" class="mui-input-clear" placeholder="现住房性质">
+					    </div>
+					</form>
+					</div>
+			    </div>
+			      <div class="mui-card">
+					<!--页眉，放置标题-->
+					<div class="mui-card-header">工作社保情况 </div>
+					<!--内容区-->
+					<div class="mui-card-content" >
+					<form class="mui-input-group">
+					    <div class="mui-input-row">
+					        <label>劳动合同签订起始时间</label>
+					        <input type="text" class="mui-input-clear" placeholder="起始年限">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>劳动合同签订终止时间</label>
+					        <input type="text" class="mui-input-clear" placeholder="终止年限">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>社会保险缴纳起始时间</label>
+					        <input type="text" class="mui-input-clear" placeholder="缴纳时间">
+					    </div>
+					     <div class="mui-input-row">
+					        <label>住房公积金缴纳起始时间</label>
+					        <input type="text" class="mui-input-clear" placeholder="缴纳时间">
+					    </div>
+					   
+					</form>
+					</div>
+			    </div>
+
+			      <div class="mui-button-row">
+			        <button type="button" class="mui-btn mui-btn-primary" id="prev1">上一步</button>
+			        <button type="button" class="mui-btn mui-btn-success" id="next3" >下一步</button>
+			    </div>
+			   </div>
+			  <div id="wrap3" style="display: none;">
+		          <div class="mui-card">
+					<!--页眉，放置标题-->
+					<div class="mui-card-header">同住家庭成员情况</div>
+					<!--内容区-->
+					<div class="mui-card-content" >
+					<form class="mui-input-group">
+					    <div class="mui-input-row">
+					        <label>关系</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入关系">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>姓名</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入姓名">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>出生年月</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入出生年月">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>婚姻状况</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入婚姻状况">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>工作单位</label>
+					        <input type="text" class="mui-input-clear" placeholder="请输入工作单位">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>身份证号</label>
+					        <input type="text" class="mui-input-clear" placeholder="身份证号">
+					    </div>
+					    <div class="mui-input-row">
+					        <label>年收入</label>
+					        <input type="text" class="mui-input-clear" placeholder="年收入">
+					    </div>
+					</form>
+					</div>
+			    </div>
+			      <div class="mui-button-row">
+			        <button type="button" class="mui-btn mui-btn-primary" id="prev2">上一步</button>
+			        <button type="button" class="mui-btn mui-btn-success" id="next4" >下一步</button>
+			    </div>
+			   </div>
+			  <div id="wrap4" style="display: none;">
+		          <div class="mui-card">
+					<!--页眉，放置标题-->
+					<div class="mui-card-header">附件-申请人和共同承租家庭成员身份证</div>
+					<!--内容区-->
+					<div class="mui-card-content" >
+					<form class="mui-input-group">
+					    
+					</form>
+					<div class="mui-card-footer">
+						<button type="button" class="mui-btn mui-btn-warning" id="">添加图片</button>
+					</div>
+					</div>
+			    </div>
+			      <div class="mui-card">
+					<!--页眉，放置标题-->
+					<div class="mui-card-header">附件-户口簿及其他居住证明</div>
+					<!--内容区-->
+					<div class="mui-card-content" >
+					<form class="mui-input-group">
+					    
+					</form>
+					</div>
+					<div class="mui-card-footer">
+						<button type="button" class="mui-btn mui-btn-warning" id="">添加图片</button>
+					</div>
+			    </div>
+			    <div class="mui-card">
+					<!--页眉，放置标题-->
+					<div class="mui-card-header">附件-劳动合同或者聘用合同</div>
+					<!--内容区-->
+					<div class="mui-card-content" >
+					<form class="mui-input-group">
+					    
+					</form>
+					</div>
+					<div class="mui-card-footer">
+						<button type="button" class="mui-btn mui-btn-warning" id="">添加图片</button>
+					</div>
+			    </div>
+			    <div class="mui-card">
+					<!--页眉，放置标题-->
+					<div class="mui-card-header">附件-单位出具的收入证明</div>
+					<!--内容区-->
+					<div class="mui-card-content" >
+					<form class="mui-input-group">
+					    
+					</form>
+					</div>
+					<div class="mui-card-footer">
+						<button type="button" class="mui-btn mui-btn-warning" id="">添加图片</button>
+					</div>
+			    </div>
+			    <div class="mui-card">
+					<!--页眉，放置标题-->
+					<div class="mui-card-header">附件-无房证明</div>
+					<!--内容区-->
+					<div class="mui-card-content" >
+					<form class="mui-input-group">
+					    
+					</form>
+					</div>
+					<div class="mui-card-footer">
+						<button type="button" class="mui-btn mui-btn-warning" id="">添加图片</button>
+					</div>
+			    </div>
+			    <div class="mui-card">
+					<!--页眉，放置标题-->
+					<div class="mui-card-header">附件-单位出具的公租房申请公示证明</div>
+					<!--内容区-->
+					<div class="mui-card-content" >
+					<form class="mui-input-group">
+					    
+					</form>
+					</div>
+					<div class="mui-card-footer">
+						<button type="button" class="mui-btn mui-btn-warning" id="">添加图片</button>
+					</div>
+			    </div>
+			    <div class="mui-card">
+					<!--页眉，放置标题-->
+					<div class="mui-card-header">附件-住房公积金缴存证明或者社会保险经办机构出具的神会保险缴存证明</div>
+					<!--内容区-->
+					<div class="mui-card-content" >
+					<form class="mui-input-group">
+					    
+					</form>
+					</div>
+					<div class="mui-card-footer">
+						<button type="button" class="mui-btn mui-btn-warning" id="">添加图片</button>
+					</div>
+			    </div>
+			    <div class="mui-card">
+					<!--页眉，放置标题-->
+					<div class="mui-card-header">附件-婚姻状况证明</div>
+					<!--内容区-->
+					<div class="mui-card-content" >
+					<form class="mui-input-group">
+					    
+					</form>
+					</div>
+					<div class="mui-card-footer">
+						<button type="button" class="mui-btn mui-btn-warning" id="">添加图片</button>
+					</div>
+			    </div>
+			    <div class="mui-card">
+					<!--页眉，放置标题-->
+					<div class="mui-card-header">附件-大中专院校毕业证书</div>
+					<!--内容区-->
+					<div class="mui-card-content" >
+					<form class="mui-input-group">
+					    
+					</form>
+					</div>
+					<div class="mui-card-footer">
+						<button type="button" class="mui-btn mui-btn-warning" id="">添加图片</button>
+					</div>
+			    </div>
+			    <div class="mui-card">
+					<!--页眉，放置标题-->
+					<div class="mui-card-header">附件-印业执照（所在区）</div>
+					<!--内容区-->
+					<div class="mui-card-content" >
+					<form class="mui-input-group">
+					    
+					</form>
+					</div>
+					<div class="mui-card-footer">
+						<button type="button" class="mui-btn mui-btn-warning" id="">添加图片</button>
+					</div>
+			    </div>
+			      <div class="mui-button-row">
+			        <button type="button" class="mui-btn mui-btn-primary" id="prev3">上一页</button>
+			        <button type="button" class="mui-btn mui-btn-success" id="submit">提交申请</button>
+			    </div>
+			   </div>
+	      </div>
+	    </div>  
+	    <div class="mui-off-canvas-backdrop"></div>
+	  </div>
+	</div>
+    <script src="../../../js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/mui.lazyload.js"></script>
+	<script src="../../../js/mui.lazyload.img.js"></script>
+	<script>
+		mui.init();
+		mui('.mui-scroll-wrapper').scroll({
+          deceleration: 0.0006 
+       });
+       mui(".mui-bar").on('tap','#apply',function(){
+			 mui.openWindow({
+			     id:'applyList',
+			     url:'../../applyList/applyList.html'
+			});
+		})
+		mui(".mui-bar").on('tap','#audit',function(){
+			 mui.openWindow({
+			     id:'audioList',
+			     url:'../../audioList/audioList.html'
+			});
+		})
+		mui(".mui-bar").on('tap','#userInfo',function(){
+			 mui.openWindow({
+			     id:'userInfo',
+			     url:'../../userInfo/userInfo.html'
+			});
+		})
+		mui(".mui-bar").on('tap','#updatePwd',function(){
+			 mui.openWindow({
+			     id:'updatePwd',
+			     url:'../../updatePwd.html'
+			});
+		})
+       mui(document.body).on('tap', '.mui-btn', function(e) {
+       	 var id = this.getAttribute("id");
+       	 var code=id.substring(4);
+       	/* mui('.mui-scroll-wrapper').scroll().setTranslate(0,0);*/
+
+       	 if(id.indexOf("next")!=-1){
+       	 	$('#wrap'+code+'').show().siblings().hide();
+       	 }
+       	 if(id.indexOf("prev")!=-1){
+       	 	$('#wrap'+code+'').show().siblings().hide();
+       	 }
+       });
+	</script>
+</body>
+</html>
+

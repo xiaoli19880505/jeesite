@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>我的申请</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/mui.css"/>
+</head>
+<body>
+	<!-- 主界面不动、菜单移动 -->
+	<!-- 侧滑导航根容器 -->
+	<div class="mui-off-canvas-wrap mui-draggable mui-slide-in">
+	  <!-- 菜单容器 -->
+	  <aside class="mui-off-canvas-left" id="offCanvasSide">
+	    <div class="mui-scroll-wrapper">
+	      <div class="mui-scroll">
+	        <!-- 菜单具体展示内容 -->
+	        <ul class="mui-table-view">
+			    <li class="mui-table-view-cell">
+			        <a class="mui-navigate-right">我的申请</a>
+			    </li>
+			    <li class="mui-table-view-cell">
+			        <a class="mui-navigate-right">我的年审</a>
+			    </li>
+			    <li class="mui-table-view-cell">
+			        <a class="mui-navigate-right">个人信息</a>
+			    </li>
+			    <li class="mui-table-view-cell">
+			        <a class="mui-navigate-right">修改密码</a>
+			    </li>
+			</ul>
+	      </div>
+	    </div>
+	  </aside>
+	  <!-- 主页面容器 -->
+	  <div class="mui-inner-wrap">
+	    <!-- 主页面标题 -->
+	    <header class="mui-bar mui-bar-nav">
+	      <a class="mui-icon mui-action-menu mui-icon-bars mui-pull-left" href="#offCanvasSide"></a>
+	      <h1 class="mui-title">我的申请</h1>
+	    </header>
+	   <nav class="mui-bar mui-bar-tab">
+		    <a class="mui-tab-item mui-active" id="apply">
+		        <span class="mui-icon mui-icon-home"></span>
+		        <span class="mui-tab-label">我的申请</span>
+		    </a>
+		    <a class="mui-tab-item"  id="audit">
+		        <span class="mui-icon mui-icon-phone"></span>
+		        <span class="mui-tab-label">我的年审</span>
+		    </a>
+		    <a class="mui-tab-item"  id="userInfo">
+		        <span class="mui-icon mui-icon-contact"></span>
+		        <span class="mui-tab-label">个人信息</span>
+		    </a>
+		    <a class="mui-tab-item"  id="updatePwd">
+		        <span class="mui-icon mui-icon-gear"></span>
+		        <span class="mui-tab-label">修改密码</span>
+		    </a>
+		</nav>
+	    <div class="mui-content mui-scroll-wrapper">
+	      <div class="mui-scroll">
+	        <!-- 主界面具体展示内容 -->
+	        <ul class="mui-table-view">
+			    <li class="mui-table-view-cell">Item 1<span class="mui-badge mui-badge-success">申请成功</span></li>
+			    <li class="mui-table-view-cell">Item 2<span class="mui-badge mui-badge-danger">审核中</span></li>
+			    <li class="mui-table-view-cell">Item 3<span class="mui-badge mui-badge-warning">待修改</span></li>
+			</ul>
+			<div class="mui-row" style="text-align: center;margin-top: 2rem;">
+				<a href="#popover" id="openPopover" class="mui-btn mui-btn-primary ">新增申请</a>
+			</div>
+	      </div>
+	    </div>  
+	    <div class="mui-off-canvas-backdrop"></div>
+	  </div>
+	</div>
+    <div id="popover" class="mui-popover">
+		<ul class="mui-table-view">
+			<li class="mui-table-view-cell"><a href="applyAdd/jsfAdd.html">经济适用住房申请</a></li>
+			<li class="mui-table-view-cell"><a href="applyAdd/xjyAdd.html">公共租赁住房（新就业人员）</a></li>
+			<li class="mui-table-view-cell"><a href="applyAdd/dbAdd.html">公共租赁住房（低保、特困家庭）</a></li>
+			<li class="mui-table-view-cell"><a href="applyAdd/wlhAdd.html">公共租赁住房（外来务工人员）</a></li>
+			<li class="mui-table-view-cell"><a href="applyAdd/btAdd.html">公共租赁住房租赁补贴</a></li>
+		</ul>
+	</div>
+    <script src="../../js/public/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/mui/mui.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/public/public.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		mui.init({
+          /*  pullRefresh : {
+                container:"#refreshContainer",//下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+                down : {
+                    style:'circle',//必选，下拉刷新样式，目前支持原生5+ ‘circle’ 样式
+                    color:'#2BD009', //可选，默认“#2BD009” 下拉刷新控件颜色
+                    height:'50px',//可选,默认50px.下拉刷新控件的高度,
+                    range:'100px', //可选 默认100px,控件可下拉拖拽的范围
+                    offset:'0px', //可选 默认0px,下拉刷新控件的起始位置
+                    auto: true,//可选,默认false.首次加载自动上拉刷新一次
+                    callback :pullfresh-function //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+                }
+            }*/
+		});
+        mui(".mui-bar").on('tap', '.mui-tab-item', function(e) {
+            var target = this.getAttribute("id");
+            switch(target) {
+                case 'apply':
+                    weixin.openWindow('applyList','applyList.html');
+                    break;
+                case 'audit':
+                    weixin.openWindow('audioList','../audioList/audioList.html');
+                    break;
+                case 'userInfo':
+                    weixin.openWindow('userInfo','../userInfo/userInfo.html');
+                    break;
+                case 'updatePwd':
+                    weixin.openWindow('updatePwd','../updatePwd/updatePwd.html');
+                    break;
+                default:
+                    break;
+            }
+        });
+	</script>
+</body>
+</html>
+
